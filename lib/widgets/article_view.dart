@@ -134,6 +134,7 @@ class ArticleView extends StatelessWidget {
                       //           index: index,
                       //         )));
                     },
+                    
                     child: FadeInImage(
                       fit: BoxFit.cover,
                       image: NetworkImage(vm.images[index]),
