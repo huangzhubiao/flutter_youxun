@@ -58,26 +58,7 @@ class SlideViewState extends State<SlideView> with SingleTickerProviderStateMixi
                 builder: (ctx) => new NewsDetailPage(id: detailUrl)
             ));
           },
-          child: new Image.network(imgUrl,fit: BoxFit.fill,),
-          // child: new Stack(
-          //   children: <Widget>[
-          //     new Container(
-          //       width: MediaQuery.of(context).size.width,
-          //       child: new FittedBox(
-          //         child:  new Image.network(imgUrl),
-          //         fit: BoxFit.fill,
-          //       )
-          //     ),
-          //     new Container(
-          //       width: MediaQuery.of(context).size.width,
-          //       color: const Color(0x50000000),
-          //       child: new Padding(
-          //         padding: const EdgeInsets.all(6.0),
-          //         child: new Text(title, style: new TextStyle(color: Colors.white, fontSize: 15.0)),
-          //       )
-          //     )
-          //   ],
-          // ),
+          child: new Image.network(imgUrl,fit: BoxFit.fill),
         ));
       }
     }

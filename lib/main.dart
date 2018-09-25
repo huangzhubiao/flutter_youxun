@@ -3,21 +3,39 @@ import 'package:flutter/cupertino.dart';
 import 'package:youxun/page/myInfoPage.dart';
 import 'package:youxun/page/newListPage.dart';
 
-void main() => runApp(new MyOSCClient());
+import 'package:redux/redux.dart';
+import 'package:youxun/redux/states/main.dart';
+import 'package:youxun/redux/view_models/main.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+
+
+
+
+// void main() => runApp(new MyOSCClient());
+
+void main() {
+  final Store<ReduxState> store = StoreContainer.global;
+  runApp(MyOSCClient(store: store));
+}
 
 class MyOSCClient extends StatefulWidget {
+  final Store<ReduxState> store;
+  MyOSCClient({this.store});
+
   @override
-  State<StatefulWidget> createState() => new MyApp();
+  State<StatefulWidget> createState() => new MyApp(store:store);
 }
 
 class MyApp extends State<MyOSCClient> {
+  final Store<ReduxState> store;
+  MyApp({this.store});
     int _tabIndex = 0;
   final tabTextStyleNormal = new TextStyle(color: const Color(0xff969696));
   final tabTextStyleSelected = new TextStyle(color: Colors.blue);
 
   var tabImages;
   var _body;
-  var appBarTitles = ['资讯','我的'];
+  var appBarTitles = ['我的','资讯'];
 
   Image getTabImage(path) {
     return new Image.asset(path, width: 20.0, height: 20.0);
@@ -38,9 +56,10 @@ class MyApp extends State<MyOSCClient> {
     }
     _body = new IndexedStack(
       children: <Widget>[
-        new NewsListPage(),
+        
         // new MyInfoPage(),
-        new MyInfoPage()
+        new MyInfoPage(),
+        new NewsListPage(),
       ],
       index: _tabIndex,
     );
@@ -66,7 +85,10 @@ class MyApp extends State<MyOSCClient> {
   @override
   Widget build(BuildContext context) {
     initData();
-    return new MaterialApp(
+
+    return StoreProvider<ReduxState>(
+      store: store,
+      child:new MaterialApp(
       theme: new ThemeData(
           primaryColor: Colors.blue,
       ),
@@ -94,6 +116,7 @@ class MyApp extends State<MyOSCClient> {
           },
         ),
       ),
+    ),
     );
   }
 }

@@ -40,7 +40,7 @@ class NewsListPageState extends State<NewsListPage> {
   @override
   void initState() {
     super.initState();
-    getNewsList(false);
+    // getNewsList(false);
   }
 
   Future<Null> _pullToRefresh() async {
