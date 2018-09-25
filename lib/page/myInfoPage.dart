@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:youxun/util/NetUtils.dart';
 import 'package:youxun/models/article.dart';
-
+import 'package:youxun/widgets/article_view.dart';
+import 'package:youxun/widgets/home_banner.dart';
+import 'package:youxun/widgets/section_title.dart';
 import 'package:youxun/redux/states/main.dart';
 import 'package:youxun/redux/view_models/home.dart';
+import 'package:youxun/widgets/todays_boardcast.dart';
+import 'package:youxun/widgets/secton_divider.dart';
 
 class MyInfoPage extends StatefulWidget{
   _MyInfoPageState createState() => _MyInfoPageState();
@@ -30,19 +34,52 @@ int sliderIndex = 0;
           converter: (store) => HomeViewModel(store),
           builder: (context, vm) {
             return new Container(
-              child: vm.isLoading?Center(
-                child: CircularProgressIndicator(),
-              ):Container(
-                child: vm.articles.isNotEmpty?ListView.builder(
-                  itemCount:vm.articles.length,
-                  itemBuilder:(context,index){
-                    return new Text('${vm.articles[index].url}');
-                  }
-                ):Container(),
-              ),
+              child: vm.isLoading
+                    ? Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : Container(
+                      child: ListView(
+                          primary: true,
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: vm.ads.isNotEmpty
+                                  ? HomeBanner(
+                                      banners: vm.ads,
+                                    )
+                                  : Container(),
+                            ),
+                            SectionTitle(
+                              title: "今日播出",
+                            ),
+                             Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 8.0),
+                              child: vm.schedules.isNotEmpty
+                                  ? TodaysBoardcast(
+                                      schedules: vm.schedules,
+                                    )
+                                  : Container(),
+                            ),
+                            SectionDivider(),
+                            vm.articles.isNotEmpty
+                                ? ListView.builder(
+                                    shrinkWrap: true,
+                                    physics: ClampingScrollPhysics(),
+                                    itemCount: vm.articles.length,
+                                    itemBuilder: (context, index) {
+                                      return ArticleView(
+                                        vm: ArticleViewModel
+                                            .fromArticle(vm.articles[index]),
+                                      );
+                                    },
+                                  )
+                                : Container(),
+                          
+                          ]),
+                    ),
             );
-            return new Text('123+++ 789 ${vm.articles[0].url}');
-
 
           })
     );
