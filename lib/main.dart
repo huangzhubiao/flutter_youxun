@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:youxun/page/myInfoPage.dart';
 import 'package:youxun/page/newListPage.dart';
+import 'package:youxun/page/rank.dart';
 
 import 'package:redux/redux.dart';
 import 'package:youxun/redux/states/main.dart';
@@ -35,7 +36,7 @@ class MyApp extends State<MyOSCClient> {
 
   var tabImages;
   var _body;
-  var appBarTitles = ['我的','资讯'];
+  var appBarTitles = ['我的','资讯','排行'];
 
   Image getTabImage(path) {
     return new Image.asset(path, width: 20.0, height: 20.0);
@@ -51,6 +52,10 @@ class MyApp extends State<MyOSCClient> {
         [
           getTabImage('images/ic_nav_my_normal.png'),
           getTabImage('images/ic_nav_my_pressed.png')
+        ],
+        [
+          getTabImage('images/ic_nav_my_normal.png'),
+          getTabImage('images/ic_nav_my_pressed.png')
         ]
       ];
     }
@@ -60,6 +65,7 @@ class MyApp extends State<MyOSCClient> {
         // new MyInfoPage(),
         new MyInfoPage(),
         new NewsListPage(),
+        new RankPage(),
       ],
       index: _tabIndex,
     );
@@ -93,10 +99,10 @@ class MyApp extends State<MyOSCClient> {
           primaryColor: Colors.blue,
       ),
       home: new Scaffold(
-        appBar: new AppBar(
-          title: new Text(appBarTitles[_tabIndex], style: new TextStyle(color: Colors.white)),
-          iconTheme: new IconThemeData(color: Colors.white)
-        ),
+        // appBar: new AppBar(
+        //   title: new Text(appBarTitles[_tabIndex], style: new TextStyle(color: Colors.white)),
+        //   iconTheme: new IconThemeData(color: Colors.white)
+        // ),
         body: _body,
         bottomNavigationBar: new CupertinoTabBar(
           items: <BottomNavigationBarItem>[
@@ -106,7 +112,11 @@ class MyApp extends State<MyOSCClient> {
             new BottomNavigationBarItem(
                 icon: getTabIcon(1),
                 title: getTabTitle(1)),
+                new BottomNavigationBarItem(
+                icon: getTabIcon(2),
+                title: getTabTitle(2)),
           ],
+          
           currentIndex: _tabIndex,
           onTap: (index) {
             setState((){

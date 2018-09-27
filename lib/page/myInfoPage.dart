@@ -30,6 +30,9 @@ int sliderIndex = 0;
   Widget build(BuildContext context) {
     // TODO: implement build
     return new Scaffold(
+      appBar: new AppBar(
+        title:new Text('我的'),
+      ),
       body:StoreConnector<ReduxState, HomeViewModel>(
           converter: (store) => HomeViewModel(store),
           builder: (context, vm) {

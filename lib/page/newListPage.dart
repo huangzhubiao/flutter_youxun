@@ -52,9 +52,13 @@ class NewsListPageState extends State<NewsListPage> {
   @override
   Widget build(BuildContext context) {
     if (listData == null) {
-      return new Center(
-        child: new CircularProgressIndicator(),
+      return Scaffold(
+        appBar: new AppBar(
+          title:new Text('资讯'),
+        ),
+        body: new CircularProgressIndicator(),
       );
+
     } else {
       Widget listView = new ListView.builder(
         // padding: EdgeInsets.all(0.0),
@@ -62,7 +66,13 @@ class NewsListPageState extends State<NewsListPage> {
         itemBuilder: (context, i) => renderRow(i),
         controller: _controller,
       );
-      return new RefreshIndicator(child: listView, onRefresh: _pullToRefresh);
+      return Scaffold(
+        appBar: new AppBar(
+          title:new Text('资讯'),
+        ),
+        body: new RefreshIndicator(child: listView, onRefresh: _pullToRefresh),
+      );
+      // return new RefreshIndicator(child: listView, onRefresh: _pullToRefresh);
     }
   }
 
