@@ -228,4 +228,25 @@ class Networking {
         map.map((v) => ArticleReply.fromJson(v)).toList();
     return replys;
   }
+    static test123() async {
+    final url =
+        "http://adse.ximalaya.com/ting/feed/ts-1532656780625";
+        DateTime now = new DateTime.now();
+        Map<String, String> params = Map<String, String>();
+        params["device"] = "iPhone";
+        params["appid"] = "0";
+        params["name"] = "find_native";
+        params["network"] = "WIFI";
+        params["operator"] = "3";
+        params["scale"] = "3";
+        params["version"] = "6.5.3";
+        params["xt"] = now.toString();
+    var response = await http.get(
+      url,
+      headers: params,
+    );
+    List map = json.decode(response.body)["data"];
+    print("++++++++++++++=========================+++++++++++++++++++ $map,$params");
+    print(json.decode(response.body));
+  }
 }

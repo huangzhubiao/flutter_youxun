@@ -1,4 +1,6 @@
+import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
+import 'package:video_player/video_player.dart';
 import 'package:youxun/util/NetUtils.dart';
 import '../api/Api.dart';
 import 'dart:convert';
@@ -40,7 +42,8 @@ class NewsListPageState extends State<NewsListPage> {
   @override
   void initState() {
     super.initState();
-    // getNewsList(false);
+    getNewsList(false);
+    // Networking.test123();
   }
 
   Future<Null> _pullToRefresh() async {
@@ -52,11 +55,12 @@ class NewsListPageState extends State<NewsListPage> {
   @override
   Widget build(BuildContext context) {
     if (listData == null) {
+      Networking.test123();
       return Scaffold(
         appBar: new AppBar(
           title:new Text('资讯'),
         ),
-        body: new CircularProgressIndicator(),
+        // body: new CircularProgressIndicator(),
       );
 
     } else {
