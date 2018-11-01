@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
+// import 'package:dio/dio.dart';
+// import 'package:simple_rsa/simple_rsa.dart';
 import '../models/article_comment.dart';
 import '../models/comment.dart';
 import '../models/help.dart';
@@ -249,4 +250,21 @@ class Networking {
     print("++++++++++++++=========================+++++++++++++++++++ $map,$params");
     print(json.decode(response.body));
   }
+
+  // login(String acount){
+
+  //   final PUBLIC_KEY = "-----BEGIN PUBLIC KEY-----MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArSU19WyyCOfi6xrb3cDOq+s+NJ7/7vtDzCBfG4XEs0nCN9DpJrP3nf9d4Z75fueW+YyuYEQF2iB3ExZ3rKwWCPsht/+qoFaRp2xwXk62YWPN/W8IMsX8n/cI6JlC7kSRqqugrThBlNoYbo4LyOQC4JWJQuoHIFgq2u5QMd+QiGeiWDLlY03LwJ+yqi3Q1OZ+phfOz4lp2bWW94gIAGjKcnmF9Xx9wmxtdMkc6N2RrX6Ub5pok+8zGuytY0Wbn0Dt8nGh5vVXCVVLKXHF/DZzeFOFrH00+uCWmS+dabf14Yg8miq813E3oonMTDiDWTqgtGjfvYakw/R2YocV8y4juwIDAQAB-----END PUBLIC KEY-----";
+
+  //   String host = "http://gprs.syxzlg.com/Shentan/Index/SendCode";
+
+  //   String datastr = "{'username':'13427931350','type':'2'}";
+
+  //   final String singeStr = encryptString(datastr, PUBLIC_KEY) as String;
+
+  //   var params = {"data":"$singeStr","version":"1","sendtime":"2018-10-25"};
+    
+  //   Dio dio = new Dio();
+  //   Response response = dio.post(host,data: params) as Response;
+  //   print(response.data.toString());
+  // }
 }

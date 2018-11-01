@@ -37,7 +37,7 @@ class MyApp extends State<MyOSCClient> {
 
   var tabImages;
   var _body;
-  var appBarTitles = ['我的','资讯','排行','地图'];
+  var appBarTitles = ['预影','资讯','排行','我的'];
 
   Image getTabImage(path) {
     return new Image.asset(path, width: 20.0, height: 20.0);
@@ -105,10 +105,6 @@ class MyApp extends State<MyOSCClient> {
           primaryColor: Colors.blue,
       ),
       home: new Scaffold(
-        // appBar: new AppBar(
-        //   title: new Text(appBarTitles[_tabIndex], style: new TextStyle(color: Colors.white)),
-        //   iconTheme: new IconThemeData(color: Colors.white)
-        // ),
         body: _body,
         bottomNavigationBar: new CupertinoTabBar(
           items: <BottomNavigationBarItem>[
@@ -125,7 +121,6 @@ class MyApp extends State<MyOSCClient> {
                 icon: getTabIcon(3),
                 title: getTabTitle(3)),
           ],
-          
           currentIndex: _tabIndex,
           onTap: (index) {
             setState((){
